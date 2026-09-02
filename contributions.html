@@ -206,7 +206,7 @@
 
   <header class="head">
     <h1>Technical contributions</h1>
-    <p>I'm a robotics engineer and technical leader in Austin, TX. As <strong>Team Lead, Application Engineering</strong> at <a href="https://apptronik.com">Apptronik</a>, I own the technical path of humanoid deployments — from understanding the customer's problem to a validated system doing productive work on their floor, for customers like Mercedes-Benz, GXO and John Deere.</p>
+    <p>I'm a robotics engineer and technical leader in Austin, TX. As <strong>Team Lead, Application Engineering</strong> at <a href="https://apptronik.com" target="_blank" rel="noopener">Apptronik</a>, I own the technical path of humanoid deployments — from understanding the customer's problem to a validated system doing productive work on their floor, for customers like Mercedes-Benz, GXO and John Deere.</p>
     <p>I came to this through two earlier stages. First, <strong>research on robot path planning</strong> at Oregon State University: planning for multi-robot exploration when the robots can barely communicate, and planning for an underwater vehicle inspecting subsea structures. Then, in industry, <strong>fleet management software</strong> — the layer that coordinates several robots on one customer site and connects them to the customer's own plant systems. This page sets out that technical work, starting with the research.</p>
   </header>
 
@@ -235,8 +235,8 @@
       <div class="k">Completed</div><div>September 2022</div>
       <div class="k">Advisor</div><div>Prof. Geoff Hollinger — Robotic Decision Making Laboratory</div>
       <div class="k">Catalogued as</div><div>Y. K. Senewiratne</div>
-      <div class="k">Full text</div><div><a href="https://ir.library.oregonstate.edu/concern/graduate_thesis_or_dissertations/h128nn52v">Read the thesis</a> — ScholarsArchive@OSU, the official OSU repository</div>
-      <div class="k">Also listed in</div><div><a href="https://research.engr.oregonstate.edu/rdml/publications">RDML publications index</a></div>
+      <div class="k">Full text</div><div><a href="https://ir.library.oregonstate.edu/concern/graduate_thesis_or_dissertations/h128nn52v" target="_blank" rel="noopener">Read the thesis</a> — ScholarsArchive@OSU, the official OSU repository</div>
+      <div class="k">Also listed in</div><div><a href="https://research.engr.oregonstate.edu/rdml/publications" target="_blank" rel="noopener">RDML publications index</a></div>
     </div>
 
     <p><strong>The research question.</strong> <em>How do multiple robots coordinate to maximize the area explored</em> — in oceans, caves, and on other planets — when they cannot rely on continuous communication? Coordination schemes that assume a shared map or a central planner fail exactly where these robots are most needed.</p>
@@ -315,7 +315,7 @@
     <h2>AUV path planning for autonomous inspection of marine energy infrastructure</h2>
 
     <div class="meta">
-      <div class="k">Project</div><div><a href="https://blogs.oregonstate.edu/marineautonomy/autonomous-inspection-of-marine-hydrokinetic-energy-converters/">Autonomous Inspection of Marine Hydrokinetic Energy Converters</a></div>
+      <div class="k">Project</div><div><a href="https://blogs.oregonstate.edu/marineautonomy/autonomous-inspection-of-marine-hydrokinetic-energy-converters/" target="_blank" rel="noopener">Autonomous Inspection of Marine Hydrokinetic Energy Converters</a></div>
       <div class="k">Vehicle</div><div>RAVEN unmanned underwater vehicle</div>
       <div class="k">Sponsor</div><div>Naval Facilities Engineering Systems Command</div>
       <div class="k">Project leads</div><div>Brian Polagye (University of Washington) · Aaron Marburg (UW-APL) · Geoff Hollinger (OSU)</div>
@@ -325,7 +325,7 @@
 
     <figure class="half">
       <div class="frame"><img src="https://osu-wams-blogs-uploads.s3.amazonaws.com/blogs.dir/4109/files/2020/11/marburg_uuv2-1024x846.png" alt="The RAVEN unmanned underwater vehicle"></div>
-      <figcaption><span class="fig-no">FIG. 2.1</span>The RAVEN unmanned underwater vehicle, designed for autonomous inspection of subsea marine energy infrastructure. Image credit: UW-APL, via the <a href="https://blogs.oregonstate.edu/marineautonomy/autonomous-inspection-of-marine-hydrokinetic-energy-converters/">OSU Marine Autonomy Center</a>.</figcaption>
+      <figcaption><span class="fig-no">FIG. 2.1</span>The RAVEN unmanned underwater vehicle, designed for autonomous inspection of subsea marine energy infrastructure. Image credit: UW-APL, via the <a href="https://blogs.oregonstate.edu/marineautonomy/autonomous-inspection-of-marine-hydrokinetic-energy-converters/" target="_blank" rel="noopener">OSU Marine Autonomy Center</a>.</figcaption>
     </figure>
 
     <h3>How the system works</h3>
@@ -368,7 +368,7 @@
     <p><strong>My contribution:</strong></p>
     <ul>
       <li>Helped build the <strong>local motion planner</strong> for the inspection pipeline.</li>
-      <li>Implemented the planner with <strong>RRT-Connect</strong>, using the <a href="https://ompl.kavrakilab.org/"><strong>OMPL</strong></a> library.</li>
+      <li>Implemented the planner with <strong>RRT-Connect</strong>, using the <a href="https://ompl.kavrakilab.org/" target="_blank" rel="noopener"><strong>OMPL</strong></a> library.</li>
       <li>Helped build the <strong>collision map</strong>: an octree-based state validity checker that rejects viewpoints too close to occupied space and updates viewpoint cost accordingly.</li>
       <li>Optimized <strong>viewpoint generation and selection</strong> for the inspection task.</li>
       <li>Implemented the <strong>sonar nodder</strong>, which interpolates ROS time to sonar tilt angle to sweep the sensor and return the highest-reward viewpoint.</li>
@@ -565,7 +565,7 @@
           <div class="frame"><img src="images/amazon-multirobot-42.jpg" alt="Four Digit robots in a fenced work cell at an Amazon facility, alongside conveyor infrastructure"></div>
         </div>
       </div>
-      <figcaption><span class="fig-no">FIG. 4.1</span><strong>Left (Digit v2):</strong> carrying a box — the pre-production version of the robot. I implemented a range of use cases on Digit v2 through its SDK — this was before imitation learning, so everything ran on classical control with fiducial markers. Photo: Agility Robotics, via <a href="https://www.therobotreport.com/digit-humanoid-agility-robotics-now-available/">The Robot Report</a>. <strong>Right (Digit v3):</strong> the world's first commercial multi-robot humanoid deployment — four Digits in one work cell at Amazon, 2023. This is the installation my fleet management software was built to coordinate.</figcaption>
+      <figcaption><span class="fig-no">FIG. 4.1</span><strong>Left (Digit v2):</strong> carrying a box — the pre-production version of the robot. I implemented a range of use cases on Digit v2 through its SDK — this was before imitation learning, so everything ran on classical control with fiducial markers. Photo: Agility Robotics, via <a href="https://www.therobotreport.com/digit-humanoid-agility-robotics-now-available/" target="_blank" rel="noopener">The Robot Report</a>. <strong>Right (Digit v3):</strong> the world's first commercial multi-robot humanoid deployment — four Digits in one work cell at Amazon, 2023. This is the installation my fleet management software was built to coordinate.</figcaption>
     </figure>
 
     <figure>
@@ -634,10 +634,10 @@
   <section class="entry">
     <div class="sec-label"><span class="no">06</span> Sources</div>
     <ul style="font-size: 14.5px;">
-      <li><strong>Thesis:</strong> <a href="https://ir.library.oregonstate.edu/concern/graduate_thesis_or_dissertations/h128nn52v">ScholarsArchive@OSU</a> · <a href="https://research.engr.oregonstate.edu/rdml/publications">RDML publications index</a></li>
-      <li><strong>RAVEN project</strong> — description, project leads, sponsor and the vehicle photo: <a href="https://blogs.oregonstate.edu/marineautonomy/autonomous-inspection-of-marine-hydrokinetic-energy-converters/">OSU Marine Autonomy Center</a></li>
-      <li><strong>Apollo at Mercedes-Benz photo:</strong> Apptronik / Mercedes-Benz Group AG, via <a href="https://www.therobotreport.com/mercedes-benz-testing-apollo-humanoid/">The Robot Report</a></li>
-      <li><strong>Digit v2 photo:</strong> <a href="https://www.therobotreport.com/digit-humanoid-agility-robotics-now-available/">The Robot Report</a> (credit: Agility Robotics)</li>
+      <li><strong>Thesis:</strong> <a href="https://ir.library.oregonstate.edu/concern/graduate_thesis_or_dissertations/h128nn52v" target="_blank" rel="noopener">ScholarsArchive@OSU</a> · <a href="https://research.engr.oregonstate.edu/rdml/publications" target="_blank" rel="noopener">RDML publications index</a></li>
+      <li><strong>RAVEN project</strong> — description, project leads, sponsor and the vehicle photo: <a href="https://blogs.oregonstate.edu/marineautonomy/autonomous-inspection-of-marine-hydrokinetic-energy-converters/" target="_blank" rel="noopener">OSU Marine Autonomy Center</a></li>
+      <li><strong>Apollo at Mercedes-Benz photo:</strong> Apptronik / Mercedes-Benz Group AG, via <a href="https://www.therobotreport.com/mercedes-benz-testing-apollo-humanoid/" target="_blank" rel="noopener">The Robot Report</a></li>
+      <li><strong>Digit v2 photo:</strong> <a href="https://www.therobotreport.com/digit-humanoid-agility-robotics-now-available/" target="_blank" rel="noopener">The Robot Report</a> (credit: Agility Robotics)</li>
     </ul>
     <p class="credit-note" style="margin-top: 10px;">All other images are my own.</p>
   </section>
@@ -658,7 +658,7 @@
 </script>
 
 <footer>
-  Kavi Senewiratne · Austin, TX · <a href="https://linkedin.com/in/kavisen">LinkedIn</a> · <a href="https://github.com/kavi-senewiratne">GitHub</a> · <a href="mailto:kavi.senewiratne@gmail.com">kavi.senewiratne@gmail.com</a>
+  Kavi Senewiratne · Austin, TX · <a href="https://linkedin.com/in/kavisen" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://github.com/kavi-senewiratne" target="_blank" rel="noopener">GitHub</a> · <a href="mailto:kavi.senewiratne@gmail.com">kavi.senewiratne@gmail.com</a>
   <div style="margin-top: 6px; font-size: 12.5px;">Last updated: September 2, 2026</div>
 </footer>
 </body>
