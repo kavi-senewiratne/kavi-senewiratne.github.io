@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Technical Contributions — Kavi Senewiratne</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fbfbf9;
+    --grid: rgba(36, 86, 166, 0.055);
+    --text: #182236;
+    --muted: #5c6778;
+    --line: #dde1e6;
+    --accent: #2456a6;
+    --accent-soft: #e8eef8;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  body {
+    background-color: var(--bg);
+    background-image:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: 28px 28px;
+    color: var(--text);
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 16px; line-height: 1.68;
+  }
+  h1, h2, h3, h4, .mono { font-family: 'Space Grotesk', sans-serif; }
+  a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+  a:hover, a:focus-visible { text-decoration-thickness: 2px; }
+  svg.icon { width: 15px; height: 15px; vertical-align: -2px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+  .page { max-width: 880px; margin: 0 auto; padding: 0 24px; }
+
+  .topbar {
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding: 26px 0 0; font-size: 14px;
+  }
+  .topbar a.home { text-decoration: none; color: var(--muted); }
+  .topbar a.home:hover { color: var(--accent); }
+  .topbar nav a { margin-left: 22px; text-decoration: none; color: var(--muted); }
+  .topbar nav a:hover { color: var(--accent); }
+
+  header.head { padding: 60px 0 0; }
+  header.head h1 { font-size: 33px; font-weight: 700; letter-spacing: -0.015em; margin-bottom: 16px; }
+  header.head p { color: var(--muted); max-width: 46rem; margin-bottom: 13px; }
+  header.head p strong { color: var(--text); }
+
+  /* ── at a glance ── */
+  .glance { margin-top: 44px; overflow-x: auto; }
+  .glance table { border-collapse: collapse; width: 100%; min-width: 640px; font-size: 14px; background: rgba(255,255,255,.65); }
+  .glance th, .glance td { text-align: left; padding: 9px 13px; border: 1px solid var(--line); vertical-align: top; }
+  .glance th { font-family: 'Space Grotesk', sans-serif; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); background: var(--accent-soft); font-weight: 600; }
+  .glance td:first-child { font-family: 'Space Grotesk', sans-serif; color: var(--accent); font-weight: 600; white-space: nowrap; }
+  .glance a { text-decoration: none; color: var(--text); }
+  .glance a:hover { color: var(--accent); }
+
+  /* ── part dividers: research vs industry ── */
+  .part {
+    margin-top: 84px; display: flex; align-items: center; gap: 16px;
+    font-family: 'Space Grotesk', sans-serif; font-size: 14px; font-weight: 700;
+    letter-spacing: .2em; text-transform: uppercase; color: var(--accent);
+  }
+  .part::before, .part::after { content: ''; flex: 1; border-top: 2px solid var(--accent); opacity: .35; }
+
+  /* ── sections ── */
+  section.entry { margin-top: 64px; }
+  .sec-label {
+    font-family: 'Space Grotesk', sans-serif; font-size: 13px; font-weight: 600;
+    letter-spacing: .14em; color: var(--muted); text-transform: uppercase;
+    display: flex; align-items: center; gap: 14px; margin-bottom: 14px;
+  }
+  .sec-label::after { content: ''; flex: 1; border-top: 1px solid var(--line); }
+  .sec-label .no { color: var(--accent); }
+  section.entry h2 { font-size: 24px; font-weight: 700; line-height: 1.3; margin-bottom: 18px; max-width: 44rem; }
+  section.entry h3 { font-size: 18px; font-weight: 600; margin: 34px 0 12px; }
+  section.entry p { margin-bottom: 14px; max-width: 46rem; }
+  section.entry p.q { font-style: italic; }
+  section.entry ul { margin: 0 0 14px 1.2em; max-width: 44rem; }
+  section.entry li { margin-bottom: 7px; }
+
+  /* metadata block (label/value) */
+  .meta {
+    display: grid; grid-template-columns: max-content 1fr; gap: 0;
+    border: 1px solid var(--line); background: rgba(255,255,255,.65);
+    font-size: 14.5px; margin: 0 0 26px; max-width: 46rem;
+  }
+  .meta > div { padding: 8px 14px; border-bottom: 1px solid var(--line); }
+  .meta > div:nth-last-child(-n+2) { border-bottom: 0; }
+  .meta .k {
+    font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 12.5px;
+    letter-spacing: .06em; text-transform: uppercase; color: var(--muted);
+    background: var(--accent-soft); border-right: 1px solid var(--line);
+    display: flex; align-items: center;
+  }
+
+  /* comparison table (challenge/contribution) */
+  table.plain { border-collapse: collapse; margin: 0 0 22px; font-size: 14.5px; max-width: 46rem; background: rgba(255,255,255,.65); }
+  table.plain th, table.plain td { border: 1px solid var(--line); padding: 9px 13px; text-align: left; vertical-align: top; }
+  table.plain th { font-family: 'Space Grotesk', sans-serif; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); background: var(--accent-soft); }
+
+  /* figures */
+  figure { margin: 26px 0; }
+  figure .frame {
+    border: 1px solid var(--text); background: #fff; border-radius: 3px;
+    box-shadow: 8px 8px 0 var(--accent-soft); overflow: hidden;
+  }
+  /* side-by-side panels with an arrow between them (same slim arrow everywhere) */
+  .panel-row { display: flex; align-items: center; gap: 12px; }
+  .panel-row .frame { flex: 1 1 0; min-width: 0; }
+  .panel-row .arrow {
+    flex: 0 0 auto; font-family: 'Space Grotesk', sans-serif;
+    font-size: 24px; color: var(--muted); line-height: 1;
+  }
+  @media (max-width: 720px) {
+    .panel-row.stack-mobile { flex-direction: column; align-items: stretch; }
+    .panel-row.stack-mobile .arrow { transform: rotate(90deg); align-self: center; }
+  }
+  /* pipeline: five stages as separate framed panels with labels on the paper */
+  .pipe-row { display: flex; align-items: center; gap: 10px; }
+  .stage { display: flex; flex-direction: column; gap: 7px; min-width: 0; }
+  .stage-label {
+    font-family: 'Space Grotesk', sans-serif; font-size: 10px; font-weight: 600;
+    letter-spacing: .05em; text-transform: uppercase; color: var(--muted);
+    text-align: center; min-height: 28px;
+    display: flex; align-items: flex-end; justify-content: center; line-height: 1.3;
+  }
+  /* frames sit on one baseline regardless of how many lines a label wraps to */
+  .pipe-row { align-items: stretch; }
+  .pipe-row .stage .frame { margin-top: auto; }
+  .pipe-row .arrow { align-self: center; }
+  .stage-sub { display: block; font-size: 11px; line-height: 16px; min-height: 16px; font-style: italic; color: var(--muted); text-align: center; }
+  .stage.mine .stage-label { color: var(--accent); }
+  .stage.mine .frame { border: 2px solid var(--accent); }
+  .pipe-row .arrow { flex: 0 0 auto; font-family: 'Space Grotesk', sans-serif; font-size: 20px; color: var(--muted); line-height: 1; }
+  @media (max-width: 720px) {
+    .pipe-row { flex-direction: column; align-items: stretch; }
+    .pipe-row .arrow { transform: rotate(90deg); align-self: center; }
+    .stage-label { min-height: 0; }
+  }
+  figure img, figure video { display: block; width: 100%; height: auto; }
+  figure.wide .frame { overflow-x: auto; }
+  figure.wide img { min-width: 900px; }
+  figcaption { font-size: 13.5px; color: var(--muted); margin-top: 12px; line-height: 1.55; max-width: 46rem; }
+  figcaption .fig-no { font-family: 'Space Grotesk', sans-serif; font-size: 11.5px; letter-spacing: .06em; color: var(--accent); font-weight: 600; margin-right: 6px; }
+  figure.half { max-width: 520px; }
+  .video-wide { aspect-ratio: 16/9; }
+  .video-wide iframe { width: 100%; height: 100%; display: block; border: 0; }
+
+  /* accordion */
+  details {
+    border: 1px solid var(--line); background: rgba(255,255,255,.7);
+    margin: 30px 0; max-width: 46rem;
+  }
+  details summary {
+    cursor: pointer; list-style: none; padding: 13px 16px;
+    font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 14.5px;
+    color: var(--accent); display: flex; align-items: center; gap: 10px;
+  }
+  details summary::-webkit-details-marker { display: none; }
+  details summary::before { content: '+'; font-size: 17px; width: 1em; }
+  details[open] summary::before { content: '–'; }
+  details[open] summary { border-bottom: 1px solid var(--line); }
+  details .inner { padding: 18px 16px 8px; }
+  details figure { margin: 18px 0; }
+
+  .credit-note { font-size: 13px; color: var(--muted); }
+
+  /* skills */
+  .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 8px; }
+  .skill-block { border: 1px solid var(--line); background: rgba(255,255,255,.7); padding: 16px 18px; }
+  .skill-block h4 { font-size: 13px; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+  .skill-block p { font-size: 14px; color: var(--muted); margin: 0; }
+
+  footer {
+    margin-top: 90px; border-top: 1px solid var(--text);
+    padding: 26px 24px 46px; text-align: center; color: var(--muted); font-size: 13.5px;
+    background: rgba(255,255,255,.6);
+  }
+
+  @media (max-width: 720px) {
+    .topbar nav { display: none; }
+    .skills-grid { grid-template-columns: 1fr; }
+    .meta { grid-template-columns: 1fr; }
+    .meta .k { border-right: 0; }
+    .meta > div { border-bottom: 0; }
+    .meta > div.k { border-top: 1px solid var(--line); }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+  <div class="topbar">
+    <a class="home" href="index.html">← Kavi Senewiratne</a>
+    <nav>
+      <a href="#thesis">Thesis</a>
+      <a href="#auv">AUV</a>
+      <a href="#apptronik">Apptronik</a>
+      <a href="#agility">Agility</a>
+      <a href="#skills">Skills</a>
+    </nav>
+  </div>
+
+  <header class="head">
+    <h1>Technical contributions</h1>
+    <p>I'm a robotics engineer and technical leader in Austin, TX. As <strong>Team Lead, Application Engineering</strong> at <a href="https://apptronik.com">Apptronik</a>, I own the technical path of humanoid deployments — from understanding the customer's problem to a validated system doing productive work on their floor, for customers like Mercedes-Benz, GXO and John Deere.</p>
+    <p>I came to this through two earlier stages. First, <strong>research on robot path planning</strong> at Oregon State University: planning for multi-robot exploration when the robots can barely communicate, and planning for an underwater vehicle inspecting subsea structures. Then, in industry, <strong>fleet management software</strong> — the layer that coordinates several robots on one customer site and connects them to the customer's own plant systems. This page sets out that technical work, starting with the research.</p>
+  </header>
+
+  <!-- ═══ at a glance ═══ -->
+  <div class="glance">
+    <table>
+      <tr><th>#</th><th>Contribution</th><th>Where</th><th>Role</th></tr>
+      <tr><td><a href="#thesis">1</a></td><td>MS thesis: decentralized multi-robot exploration under sparse communication</td><td>Oregon State University</td><td>Author (advisor: Prof. Geoff Hollinger)</td></tr>
+      <tr><td><a href="#auv">2</a></td><td>Local planner and viewpoint optimization for autonomous subsea inspection (RAVEN UUV)</td><td>OSU Marine Autonomy Center / RDML, with UW-APL</td><td>Graduate Research Assistant</td></tr>
+      <tr><td><a href="#apptronik">3</a></td><td>Humanoid deployment architecture for Fortune 500 customers (Apollo, Apollo 2)</td><td>Apptronik</td><td>Team Lead, Application Engineering</td></tr>
+      <tr><td><a href="#safety">3b</a></td><td>Safety concept for the humanoid work cell, and the ISO standard for dynamically stable robots</td><td>Apptronik · ISO/TC 299/WG 12</td><td>Safety concept owner · TÜV Rheinland FSE · committee member</td></tr>
+      <tr><td><a href="#agility">4</a></td><td>Fleet management software behind the world's first commercial multi-robot humanoid deployment (Amazon, 2023)</td><td>Agility Robotics</td><td>Application Engineer</td></tr>
+    </table>
+  </div>
+
+  <!-- ════════════════ PART I — RESEARCH ════════════════ -->
+  <div class="part">Part I — Research</div>
+
+  <!-- ═══ 1 · thesis ═══ -->
+  <section class="entry" id="thesis">
+    <div class="sec-label"><span class="no">01</span> MS Thesis — Oregon State University (MS Robotics)</div>
+    <h2>Decentralized Multi-Robot Exploration with Sparse Communication through Deep Imitation Learning</h2>
+
+    <div class="meta">
+      <div class="k">Degree</div><div>MS Robotics, Oregon State University</div>
+      <div class="k">Completed</div><div>September 2022</div>
+      <div class="k">Advisor</div><div>Prof. Geoff Hollinger — Robotic Decision Making Laboratory</div>
+      <div class="k">Catalogued as</div><div>Y. K. Senewiratne</div>
+      <div class="k">Full text</div><div><a href="https://ir.library.oregonstate.edu/concern/graduate_thesis_or_dissertations/h128nn52v">Read the thesis</a> — ScholarsArchive@OSU, the official OSU repository</div>
+      <div class="k">Also listed in</div><div><a href="https://research.engr.oregonstate.edu/rdml/publications">RDML publications index</a></div>
+    </div>
+
+    <p><strong>The research question.</strong> <em>How do multiple robots coordinate to maximize the area explored</em> — in oceans, caves, and on other planets — when they cannot rely on continuous communication? Coordination schemes that assume a shared map or a central planner fail exactly where these robots are most needed.</p>
+
+    <p><strong>The approach.</strong> Decentralized exploration in which coordination is <strong>implicit</strong> rather than communicated. A convolutional neural network is trained by imitation learning to act as a <strong>heuristic for Monte Carlo Tree Search</strong>, so each robot plans its own actions while behaving in a way that is consistent with what its teammates are likely to do — without needing to talk to them.</p>
+
+    <figure class="half">
+      <div class="frame"><img src="images/thesis-method-overview.png" alt="Method overview: offline expert demonstration generator, CNN training and inference, online decentralized planner"></div>
+      <figcaption><span class="fig-no">FIG. 1.1</span>The three components: an offline oracle planner with ground-truth information generates expert demonstrations; a CNN learns to assign rewards by imitating them; MCTS uses the trained CNN as its reward function for online, decentralized planning. Figure from the thesis (Fig. 1.3).</figcaption>
+    </figure>
+
+    <figure>
+      <div class="frame"><img src="images/thesis-cnn-architecture.png" alt="CNN architecture: belief map and traversed path in, scalar reward out"></div>
+      <figcaption><span class="fig-no">FIG. 1.2</span>The CNN architecture: belief map and traversed path in, scalar reward out. Figure from the thesis (Fig. 3.3).</figcaption>
+    </figure>
+
+    <p><strong>Two challenges, two contributions:</strong></p>
+    <table class="plain">
+      <tr><th>Challenge</th><th>My contribution</th></tr>
+      <tr><td>The locations of the points of interest are unknown</td><td>A <strong>heuristic reward function learned from similar environments</strong></td></tr>
+      <tr><td>A robot cannot observe what the other robots have seen</td><td>A <strong>coordination model learned from expert demonstration data</strong></td></tr>
+    </table>
+
+    <p><strong>The test environments.</strong> Two grid maps: a 21×21 forest, and a 41×41 map modelled on the marina at <strong>Depoe Bay Harbor, Lincoln County, Oregon</strong> — the task there being to locate and inspect boats for possible damage. Points of interest spawn at random locations on every trial, so the planner never sees the same map twice.</p>
+
+    <figure class="half">
+      <div class="frame"><img src="images/thesis-depoe-bay-aerial.png" alt="Aerial view of Depoe Bay Harbor with the modelled marina area outlined in green"></div>
+      <figcaption><span class="fig-no">FIG. 1.3</span>The real harbour behind the map: the green outline is the area modelled in simulation. Thesis Fig. 3.5.</figcaption>
+    </figure>
+
+    <p><strong>Results</strong> — 100 trials per map:</p>
+    <ul>
+      <li><strong>Outperformed every baseline planner on the forest map at all communication levels</strong> — and at partial and poor communication, by a significant margin.</li>
+      <li><strong>80% faster</strong> than the same planner using the CNN as its rollout policy, at equivalent solution quality. The learned reward function is what makes a cheap random rollout policy viable inside MCTS — this is the practical payoff of the method.</li>
+      <li><strong>Degraded gracefully</strong> as communication dropped from every step, to every 10th step, to every 20th.</li>
+      <li><strong>Scaled from 4 robots to 16 without retraining</strong>, and when trained on demonstrations from teams of up to 14 robots, outperformed all baselines.</li>
+    </ul>
+
+    <figure>
+      <div class="frame"><img src="images/thesis-paths-comparison.png" alt="Table of robot paths: ground truth versus the proposed method and the sensor-coverage baseline, at full and poor communication, on both maps"></div>
+      <figcaption><span class="fig-no">FIG. 1.4</span>What the difference looks like on the map. Paths of a team of 4 robots — white is free space, black is unknown, green are the points of interest to be observed. Left column is ground truth; then the proposed method and the sensor-coverage baseline, each at full and poor communication. Top row forest, bottom row Depoe Bay. The proposed method keeps finding green cells when communication breaks down, because each robot has learned where its teammates are likely to go. Thesis Fig. 3.9.</figcaption>
+    </figure>
+
+    <figure class="half">
+      <div class="frame"><img src="images/thesis-results-forest.png" alt="Results on the Forest map: proposed CNN reward function versus sensor-coverage baselines at full, partial and poor communication"></div>
+      <figcaption><span class="fig-no">FIG. 1.5</span>Forest map, 4 robots, 100 trials. The three left groups use the proposed CNN reward function, the rest are baselines; colours are full, partial and poor communication. The method wins at every communication level, and the gap widens as communication degrades. Thesis Fig. 3.8a.</figcaption>
+    </figure>
+
+    <figure class="half">
+      <div class="frame"><img src="images/thesis-results-depoebay.png" alt="Results on the Depoe Bay map"></div>
+      <figcaption><span class="fig-no">FIG. 1.6</span>The same comparison on the larger Depoe Bay map. Thesis Fig. 3.8b.</figcaption>
+    </figure>
+
+    <figure class="half">
+      <div class="frame"><img src="images/thesis-scaling.png" alt="Scaling from 2 to 16 robots: proposed method against Greedy CNN and sensor-coverage baseline"></div>
+      <figcaption><span class="fig-no">FIG. 1.7</span>Scaling under poor communication, with the CNN trained on just 4 robots: the method keeps its lead over the sensor-coverage baseline all the way to 16 robots — no retraining. Thesis Fig. 3.10.</figcaption>
+    </figure>
+
+    <p class="credit-note"><strong>Baselines:</strong> sensor-coverage heuristic planners (greedy and MCTS variants), greedy one-step lookahead, and random. <strong>Metric:</strong> occupied vertices (points of interest) observed by at least one robot. <strong>Funding:</strong> NSF IIS-2103817, ONR N00014-22-1-2114.</p>
+
+    <details>
+      <summary>Read more — method and why it matters</summary>
+      <div class="inner">
+        <p><strong>Why imitation learning.</strong> MCTS with a strong heuristic can plan well, but a hand-designed heuristic for multi-robot exploration is hard to write and expensive to evaluate. I trained the CNN by <strong>imitating a centralized oracle planner with perfect information</strong> — a planner the robots cannot query at decision time — so the learned model predicts what the oracle would have said. The result is a heuristic that is cheap to evaluate at run time and captures coordination behaviour that is difficult to state as a rule.</p>
+        <p><strong>A failure mode I found and fixed.</strong> Midway through the work I identified a subtle problem: the belief map fed to the learned model <strong>goes stale during MCTS's simulated lookahead</strong>, because the robot is not actually moving during simulation — so the model was being queried on inputs unlike anything in its training distribution. I solved it by <strong>augmenting the training set with synthetic rollout datapoints</strong>, which avoided having to learn an expensive separate model of belief-map dynamics.</p>
+        <p><strong>Why implicit coordination.</strong> If each robot's policy is learned from the same demonstration distribution, the robots' choices are correlated even with no messages exchanged — they divide the space sensibly because they have each learned what a sensible division looks like. Communication, when it happens, becomes a bonus rather than a requirement.</p>
+        <p><strong>Why this transfers to my later work.</strong> The thesis is about making a multi-robot system behave coherently under real-world constraints instead of ideal ones. Fleet management for humanoids on a plant floor is the same class of problem with different constraints: heterogeneous tasks, hard safety limits, and a customer control system as an additional actor.</p>
+        <p><strong>Implementation.</strong> A CNN with <strong>2.09 M trainable parameters</strong> — two 5×5 convolutional layers and three fully-connected layers, outputting a scalar reward — taking a 41×41×4 input tensor (belief map plus traversed path). Trained in PyTorch with Adam (lr 0.001) on <strong>150,000 samples per map</strong>, about half of them synthetic rollout data, in roughly five minutes per map. MCTS ran with a 1000-vertex tree limit, a rollout budget of 6, and a UCB exploration constant of 1.0.</p>
+      </div>
+    </details>
+  </section>
+
+  <!-- ═══ 2 · RAVEN ═══ -->
+  <section class="entry" id="auv">
+    <div class="sec-label"><span class="no">02</span> Graduate Research Assistant — Marine Autonomy Center / RDML, OSU</div>
+    <h2>AUV path planning for autonomous inspection of marine energy infrastructure</h2>
+
+    <div class="meta">
+      <div class="k">Project</div><div><a href="https://blogs.oregonstate.edu/marineautonomy/autonomous-inspection-of-marine-hydrokinetic-energy-converters/">Autonomous Inspection of Marine Hydrokinetic Energy Converters</a></div>
+      <div class="k">Vehicle</div><div>RAVEN unmanned underwater vehicle</div>
+      <div class="k">Sponsor</div><div>Naval Facilities Engineering Systems Command</div>
+      <div class="k">Project leads</div><div>Brian Polagye (University of Washington) · Aaron Marburg (UW-APL) · Geoff Hollinger (OSU)</div>
+      <div class="k">Project goal</div><div>3D reconstruction of underwater turbines</div>
+      <div class="k">My part</div><div>Viewpoint optimization and local path planning</div>
+    </div>
+
+    <figure class="half">
+      <div class="frame"><img src="https://osu-wams-blogs-uploads.s3.amazonaws.com/blogs.dir/4109/files/2020/11/marburg_uuv2-1024x846.png" alt="The RAVEN unmanned underwater vehicle"></div>
+      <figcaption><span class="fig-no">FIG. 2.1</span>The RAVEN unmanned underwater vehicle, designed for autonomous inspection of subsea marine energy infrastructure. Image credit: UW-APL, via the <a href="https://blogs.oregonstate.edu/marineautonomy/autonomous-inspection-of-marine-hydrokinetic-energy-converters/">OSU Marine Autonomy Center</a>.</figcaption>
+    </figure>
+
+    <h3>How the system works</h3>
+
+    <figure>
+      <div class="pipe-row">
+        <div class="stage" style="flex-grow: 1.308;">
+          <span class="stage-label">Sonar + odometry</span>
+          <div class="frame"><img src="images/raven-pipe-1.png" alt="Sonar scan of the structure"></div>
+          <span class="stage-sub">(x, y, z, yaw)</span>
+        </div>
+        <span class="arrow" aria-hidden="true">→</span>
+        <div class="stage" style="flex-grow: 1.391;">
+          <span class="stage-label">Mapping</span>
+          <div class="frame"><img src="images/raven-pipe-2.png" alt="Octree map of the structure"></div>
+          <span class="stage-sub">octree</span>
+        </div>
+        <span class="arrow" aria-hidden="true">→</span>
+        <div class="stage mine" style="flex-grow: 1.053;">
+          <span class="stage-label">Viewpoint generation + selection</span>
+          <div class="frame"><img src="images/raven-pipe-3.png" alt="Generated and scored viewpoints around the structure"></div>
+          <span class="stage-sub">optimized</span>
+        </div>
+        <span class="arrow" aria-hidden="true">→</span>
+        <div class="stage mine" style="flex-grow: 1.023;">
+          <span class="stage-label">Planning</span>
+          <div class="frame"><img src="images/raven-pipe-4.png" alt="RRT-Connect tree and planned path"></div>
+          <span class="stage-sub">RRT-Connect</span>
+        </div>
+        <span class="arrow" aria-hidden="true">→</span>
+        <div class="stage" style="flex-grow: 1.533;">
+          <span class="stage-label">Control</span>
+          <div class="frame"><img src="images/raven-pipe-5.png" alt="The vehicle executing the path in simulation"></div>
+          <span class="stage-sub"></span>
+        </div>
+      </div>
+      <figcaption><span class="fig-no">FIG. 2.2</span>The inspection pipeline. Sonar and odometry produce the vehicle state (x, y, z, yaw); an octree map is built from it; viewpoints are generated and selected; the planner finds a collision-free path to the chosen viewpoint; control executes it. <strong>The two stages in blue are the ones I built.</strong></figcaption>
+    </figure>
+
+    <p><strong>My contribution:</strong></p>
+    <ul>
+      <li>Helped build the <strong>local motion planner</strong> for the inspection pipeline.</li>
+      <li>Implemented the planner with <strong>RRT-Connect</strong>, using the <a href="https://ompl.kavrakilab.org/"><strong>OMPL</strong></a> library.</li>
+      <li>Helped build the <strong>collision map</strong>: an octree-based state validity checker that rejects viewpoints too close to occupied space and updates viewpoint cost accordingly.</li>
+      <li>Optimized <strong>viewpoint generation and selection</strong> for the inspection task.</li>
+      <li>Implemented the <strong>sonar nodder</strong>, which interpolates ROS time to sonar tilt angle to sweep the sensor and return the highest-reward viewpoint.</li>
+      <li>Built the <strong>planner visualization</strong> tooling.</li>
+      <li>Delivered a <strong>working end-to-end path planning pipeline</strong>, developed in simulation and tested on hardware, working remotely in a <strong>team of 8</strong> across two institutions.</li>
+    </ul>
+
+    <h3>Some of the features I implemented</h3>
+
+    <figure>
+      <div class="pipe-row">
+        <div class="stage" style="flex: 1.045 1 0;">
+          <span class="stage-label">Before optimization</span>
+          <div class="frame"><img src="images/raven-viewpoint-before.png" alt="Unoptimized viewpoint generation: hundreds of candidate viewpoints in every direction"></div>
+        </div>
+        <span class="arrow" aria-hidden="true">→</span>
+        <div class="stage" style="flex: 1.014 1 0;">
+          <span class="stage-label">After optimization</span>
+          <div class="frame"><img src="images/raven-viewpoint-after.png" alt="Optimized viewpoint generation: a sparse set of viewpoints aimed at the structure"></div>
+        </div>
+      </div>
+      <figcaption><span class="fig-no">FIG. 2.3</span>Viewpoint generation, before and after optimization. <strong>Left:</strong> the unoptimized candidate set — hundreds of viewpoints in every direction, most of them looking at nothing. <strong>Right:</strong> after optimization — a sparse set, oriented towards the structure actually being inspected. Choosing where to look from is half the inspection problem, and this is what made the planner tractable.</figcaption>
+    </figure>
+
+    <figure>
+      <div class="frame"><img src="images/raven-planner-visualization.png" alt="Planner visualization in RViz: RRT tree, planned path and sonar point cloud around the inspection target"></div>
+      <figcaption><span class="fig-no">FIG. 2.4</span>The planner, and the visualization I built to debug it, in RViz: the RRT-Connect tree (green nodes, blue edges), the selected path in red, and the sonar point cloud of the structure being inspected.</figcaption>
+    </figure>
+
+    <figure>
+      <div class="frame"><video src="images/planner.mp4" muted loop autoplay playsinline controls></video></div>
+      <figcaption><span class="fig-no">FIG. 2.5</span>The planner running in simulation: the sonar sweeps the structure, the map fills in, viewpoints are generated and scored, and RRT-Connect plans the vehicle's way to the next one.</figcaption>
+    </figure>
+
+    <h3>From simulation to open water</h3>
+
+    <figure>
+      <div class="pipe-row stack-mobile">
+        <div class="stage" style="flex-grow: 1.433;">
+          <span class="stage-label">Simulation — Gazebo</span>
+          <div class="frame"><img src="images/raven-field-sim.png" alt="The simulated subsea structure in Gazebo"></div>
+        </div>
+        <span class="arrow" aria-hidden="true">→</span>
+        <div class="stage" style="flex-grow: 1.331;">
+          <span class="stage-label">Test tank</span>
+          <div class="frame"><img src="images/raven-field-tank.png" alt="The vehicle in the test tank"></div>
+        </div>
+        <span class="arrow" aria-hidden="true">→</span>
+        <div class="stage" style="flex-grow: 1.331;">
+          <span class="stage-label">Open water — night operation</span>
+          <div class="frame"><img src="images/raven-field-night.png" alt="The vehicle operating at night under a bridge"></div>
+        </div>
+      </div>
+      <figcaption><span class="fig-no">FIG. 2.6</span>The subsea structure simulated in Gazebo, the vehicle in the test tank, and the same system operating at night under a bridge.</figcaption>
+    </figure>
+
+    <details>
+      <summary>Read more — planning stack and results</summary>
+      <div class="inner">
+        <p><strong>Why this problem is hard.</strong> Marine hydrokinetic converters sit offshore in strong tides and currents, which makes inspection by divers expensive and dangerous. Automating the inspection means a vehicle has to decide, on its own, where to position itself to see the structure — and get there without hitting it.</p>
+        <p><strong>Where my work sat in the stack.</strong> The pipeline separates <em>where to go</em> from <em>how to get there</em>: a global layer decides which viewpoints to visit across the inspection task, and the local planner gets the vehicle there without collision. <strong>I helped build the local planner</strong> (RRT / RRT-Connect via OMPL) — the layer that has to respect the vehicle's real constraints and the geometry of the structure being inspected.</p>
+        <p><strong>Collision checking.</strong> Validity checking ran against an octree collision map. Rather than a naive occupancy test, the check exempted states within 50 cm of the goal, then counted occupied cells in a cube sized to the tree resolution around the candidate state and rejected the state above an occupancy threshold. This is what turned raw viewpoints into viewpoints with a usable cost.</p>
+        <p><strong>Viewpoint generation.</strong> For an inspection task, planning is only half the problem — you also have to choose <em>where to look from</em>. Optimizing viewpoint generation reduced wasted motion and improved coverage of the inspection target.</p>
+        <p><strong>Sonar nodding.</strong> The sonar was swept by interpolating ROS time to tilt angle, with the sweep limits and frequency configured in YAML, returning the viewpoint with the highest reward. This is what gave the mapping layer the geometry it needed.</p>
+        <p><strong>Visualization.</strong> Planner behaviour in 3D is close to impossible to debug from logs. I built the visualization that made planner decisions inspectable — which is what made iteration on the planner practical.</p>
+        <p><strong>Remote engineering practice.</strong> The team of 8 worked across OSU and UW-APL: documented interfaces (README, pseudocode), three syncs per week, pair programming, and code review before every merge.</p>
+        <p><strong>Stack.</strong> C++ and Python on ROS · RViz for visualization and debugging · Gazebo for simulation · OMPL for the sampling-based planner · Greensea for vehicle control · octree-based collision mapping · YAML-configured sonar sweep.</p>
+      </div>
+    </details>
+  </section>
+
+  <!-- ════════════════ PART II — INDUSTRY ════════════════ -->
+  <div class="part">Part II — Industry</div>
+
+  <!-- ═══ 3 · Apptronik ═══ -->
+  <section class="entry" id="apptronik">
+    <div class="sec-label"><span class="no">03</span> Team Lead, Application Engineering — Apptronik</div>
+    <h2>Humanoid deployment architecture for Fortune 500 manufacturing and logistics</h2>
+
+    <div class="meta">
+      <div class="k">Role</div><div>Team Lead, Application Engineering</div>
+      <div class="k">Platform</div><div>Apollo and Apollo 2 humanoid robots</div>
+      <div class="k">My team</div><div>4 engineers, growing to 6</div>
+      <div class="k">Customers</div><div>Mercedes-Benz · GXO · John Deere — our publicly announced customers</div>
+      <div class="k">Deployments led</div><div>3 to date at Mercedes-Benz, our largest customer</div>
+      <div class="k">Scope</div><div>Customer problem → deployment architecture → integration → on-site technical validation</div>
+      <div class="k">Also</div><div>Owner of the safety concept for the humanoid work cell (see <a href="#safety">3b</a>)</div>
+    </div>
+
+    <figure>
+      <div class="pipe-row stack-mobile">
+        <div class="stage">
+          <span class="stage-label">Apollo 2</span>
+          <div class="frame"><img src="images/apollo2-mb-team-2026.jpg" alt="Apollo 2 with the project team next to a Mercedes-Benz EQE on the plant floor"></div>
+        </div>
+        <div class="stage">
+          <span class="stage-label">Apollo 1</span>
+          <div class="frame"><img src="images/apollo1-bcg-edge-2024.jpg" alt="Apollo 1 at the BCG EDGE Conference, with me and a colleague working at the station beside it"></div>
+        </div>
+      </div>
+      <figcaption><span class="fig-no">FIG. 3.1</span><strong>Left:</strong> Apollo 2 with the project team at a Mercedes-Benz plant, 2026 — working on a real customer production manufacturing use case. <strong>Right:</strong> Apollo 1 at the BCG EDGE Conference 2024 in Vienna, Austria — bringing the robot up on site (I'm on the right).</figcaption>
+    </figure>
+
+    <p>As technical lead for application engineering, I own the path from <strong>customer problem to validated deployment</strong> for Apptronik's humanoid platform, across both Apollo generations. I lead a team of <strong>4 engineers (growing to 6)</strong> and act as the single technical point of coordination for every customer account.</p>
+
+    <p><strong>What that means concretely:</strong></p>
+    <ul>
+      <li><strong>Understand the customer problem.</strong> Translate a plant-floor process into robot requirements — cycle time, reach, payload, part presentation, safety boundaries, throughput targets.</li>
+      <li><strong>Architect the solution.</strong> Define every technical building block a deployment needs — robot configuration, end effector, perception, fixturing, work cell layout, IT/network, and integration into customer systems.</li>
+      <li><strong>Plan, then integrate.</strong> Sequence the work across internal teams, then bring the pieces together into one working system rather than a collection of parts.</li>
+      <li><strong>Validate on site.</strong> Own technical validation at the customer facility: commissioning, acceptance criteria, iteration against real production conditions.</li>
+      <li><strong>Customers:</strong> Fortune 500 accounts, our publicly announced ones being <strong>Mercedes-Benz</strong>, <strong>GXO</strong> and <strong>John Deere</strong>. I coordinate across all of them.</li>
+    </ul>
+
+    <details>
+      <summary>Read more — scope, method, and outcomes</summary>
+      <div class="inner">
+        <p><strong>Why this role exists.</strong> A humanoid is not a product you drop into a factory. Each deployment is a systems-integration problem where the robot is one component among many: the customer's process, their safety infrastructure, their IT landscape, and their operators. Somebody has to hold the whole picture. That is the role.</p>
+        <p><strong>Working method</strong></p>
+        <ul>
+          <li><em>Discovery</em> — on-site process observation and requirements capture with the customer's engineering and operations teams.</li>
+          <li><em>Feasibility</em> — assess whether the task is within platform capability today; identify what must be developed versus configured.</li>
+          <li><em>Architecture</em> — a deployment architecture covering robot, cell, perception, integration interfaces, and safety.</li>
+          <li><em>Build &amp; integrate</em> — coordinate internal engineering (controls, autonomy, hardware, safety) against the architecture.</li>
+          <li><em>Validation</em> — technical validation at the customer site against agreed acceptance criteria.</li>
+          <li><em>Feedback loop</em> — feed deployment learnings back into platform requirements for the next generation.</li>
+        </ul>
+        <p><strong>Team leadership.</strong> Technical lead for a team of 4 engineers, scaling to 6. Responsibilities include work allocation across parallel customer programs, technical review, and being the escalation point for deployment-blocking issues.</p>
+        <p><strong>Both generations.</strong> I worked on Apollo 1 and on Apollo 2, which gives me a view of how deployment requirements from the field shaped the next-generation platform.</p>
+      </div>
+    </details>
+
+    <!-- ═══ 3b · safety ═══ -->
+    <div id="safety" style="margin-top: 52px;">
+      <div class="sec-label"><span class="no">03b</span> Functional Safety ownership</div>
+      <p>I am the <strong>owner of the safety concept for the humanoid work cell</strong>, and a certified <strong>Functional Safety Engineer (TÜV Rheinland)</strong>.</p>
+      <ul>
+        <li>Define the safety concept for a work cell in which a mobile humanoid operates in the vicinity of people.</li>
+        <li>Bring that concept into a form customers' own safety organizations can review and accept — a prerequisite for deployment at automotive and logistics sites.</li>
+        <li>Bridge robot-side safety architecture and the customer's existing plant safety infrastructure.</li>
+      </ul>
+
+      <h3>Certification</h3>
+      <div class="meta">
+        <div class="k">Certificate</div><div>FS Eng (TÜV Rheinland) — Functional Safety Engineer</div>
+        <div class="k">Application area</div><div>Machinery</div>
+        <div class="k">ID no.</div><div>33409 / 26</div>
+        <div class="k">Issued / valid until</div><div>May 2025 — May 2030</div>
+        <div class="k">Issued by</div><div>TÜV Rheinland Industrie Service GmbH, Functional Safety &amp; Cybersecurity, Cologne (course provider: TÜV Rheinland of North America)</div>
+        <div class="k">Standards covered</div><div>EN ISO 13849-1 · EN ISO 13849-2 (validation) · EN 62061</div>
+      </div>
+
+      <h3>Standards committee</h3>
+      <p>I am a member of the committee writing the new international safety standard for dynamically stable robots.</p>
+      <div class="meta">
+        <div class="k">Committee</div><div>ISO/TC 299/WG 12</div>
+        <div class="k">Scope</div><div>"Safety of dynamically stable industrial mobile robots (legged, wheeled, or other forms of locomotion)"</div>
+        <div class="k">Convenorship</div><div>ANSI</div>
+      </div>
+      <p>There is no established safety standard yet for a machine that stays upright by actively balancing — the existing ones assume a robot that is stable when switched off. I contribute deployment experience to the drafting: what actually has to be argued, measured and accepted on a customer site before a balancing robot is allowed to work near people.</p>
+
+      <details>
+        <summary>Read more — why humanoid work-cell safety is a distinct problem</summary>
+        <div class="inner">
+          <p>Industrial safety standards were written for fixed industrial robots and, more recently, for collaborative arms. A legged humanoid working in a human-designed space fits neither model cleanly: it is mobile, it has a large and changing workspace, and its failure modes include loss of balance.</p>
+          <p>The safety concept therefore has to reason about the whole cell rather than only the robot: layout and perimeter, detection zones, the robot's behaviour when a person is detected, stop categories and their reaction paths, and residual risk that must be handled by cell design rather than by the robot.</p>
+          <p>The TÜV Rheinland Functional Safety Engineer certification — risk assessment, safety functions for machines, and validation under EN ISO 13849-1/-2 and EN 62061 — is what lets me carry that argument with customer safety authorities in a language they already accept.</p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <!-- ═══ 4 · Agility ═══ -->
+  <section class="entry" id="agility">
+    <div class="sec-label"><span class="no">04</span> Application Engineer — Agility Robotics</div>
+    <h2>Fleet management software and plant safety integration for multi-robot deployments</h2>
+
+    <div class="meta">
+      <div class="k">Role</div><div>Application Engineer</div>
+      <div class="k">Platform</div><div>Digit V2 and V3 humanoid robots</div>
+      <div class="k">System owned</div><div>Fleet management software — multi-robot coordination, task dispatch, data, integration</div>
+      <div class="k">Integration lead for</div><div>Customer safety system ↔ our fleet manager</div>
+      <div class="k">Deployments</div><div>World's first commercial multi-robot humanoid deployment — <strong>Amazon, 2023</strong> — and deployments at Toyota</div>
+    </div>
+
+    <figure>
+      <div class="pipe-row stack-mobile">
+        <div class="stage" style="flex: 1.805 1 0;">
+          <span class="stage-label">Digit v2</span>
+          <div class="frame"><img src="https://www.therobotreport.com/wp-content/uploads/2020/01/digit-robot.jpg" alt="Digit v2 carrying a box"></div>
+        </div>
+        <div class="stage" style="flex: 1.337 1 0;">
+          <span class="stage-label">Digit v3</span>
+          <div class="frame"><img src="images/amazon-multirobot-42.jpg" alt="Four Digit robots in a fenced work cell at an Amazon facility, alongside conveyor infrastructure"></div>
+        </div>
+      </div>
+      <figcaption><span class="fig-no">FIG. 4.1</span><strong>Left (Digit v2):</strong> carrying a box — the pre-production version of the robot. I implemented a range of use cases on Digit v2 through its SDK — this was before imitation learning, so everything ran on classical control with fiducial markers. Photo: Agility Robotics, via <a href="https://www.therobotreport.com/digit-humanoid-agility-robotics-now-available/">The Robot Report</a>. <strong>Right (Digit v3):</strong> the world's first commercial multi-robot humanoid deployment — four Digits in one work cell at Amazon, 2023. This is the installation my fleet management software was built to coordinate.</figcaption>
+    </figure>
+
+    <figure>
+      <div class="frame video-wide">
+        <iframe src="https://www.youtube.com/embed/q8IdbodRG14" title="The world's first commercial deployment for humanoids" allow="encrypted-media; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <figcaption><span class="fig-no">FIG. 4.2</span>The world's first commercial deployment for humanoids — try and spot me.</figcaption>
+    </figure>
+
+    <p>I worked on <strong>Digit V2 and V3</strong> and was responsible for the most important piece of software on the deployment side: the <strong>fleet management system</strong>. It ran the world's first commercial multi-robot humanoid deployment — several Digits working in one cell at <strong>Amazon in 2023</strong>.</p>
+
+    <p><strong>Fleet management software — what it does:</strong></p>
+    <ul>
+      <li><strong>Coordinates multiple robots</strong> working in the same facility.</li>
+      <li><strong>Assigns and dispatches tasks</strong> across the fleet.</li>
+      <li><strong>Collects and analyses operational data</strong> from the robots.</li>
+      <li><strong>Integrates with customer systems</strong> — warehouse/plant IT and the customer's own control layer.</li>
+      <li><strong>Interfaces with the safety system</strong> of the installation.</li>
+    </ul>
+
+    <p>I was the <strong>lead for the integration between the customer's PLC system and our fleet manager</strong> — the interface that lets a customer's existing plant control and safety layer and a fleet of humanoids operate as one system, so that <strong>people are not injured, robots are not damaged, and equipment is not destroyed</strong>. This work delivered <strong>Agility's first PLC-based safety integration under ISO 10218 / ANSI-RIA</strong>.</p>
+
+    <details>
+      <summary>Read more — the integration problem</summary>
+      <div class="inner">
+        <p><strong>Why fleet management is the hard part.</strong> A single robot doing a single task is a demo. A facility running several robots continuously needs task allocation, state tracking, error recovery, data collection, and a defined relationship to everything else on the floor. That layer is what turns a robot into an installation.</p>
+        <p><strong>PLC integration.</strong> Plant floors are run by PLCs, and they are the system of record for what is happening in a cell — including the safety system. Connecting a fleet manager to a customer PLC means agreeing on a signal interface and its semantics, handling handshakes and interlocks, respecting the timing and determinism expectations of the plant side, and making failure behaviour explicit on both sides.</p>
+        <p><strong>Why this interface is the one that matters.</strong> The stakes here are not throughput. They are that <strong>nobody gets hurt and nothing gets broken</strong>: people working near the robots must not be injured, the robots themselves must not be damaged, and the equipment and product around them must not be destroyed. My work is what allows the <strong>customer's existing safety system and our fleet manager to coordinate</strong> in order to guarantee exactly that — the fleet respects the plant's safety layer (stop, slow down, stay out of a zone), and the plant sees what the fleet is doing. Getting this interface wrong does not produce a bug; it produces an injury, a destroyed robot, or a stopped line.</p>
+        <p><strong>Data.</strong> Beyond dispatching work, the fleet manager was the point where operational data was gathered and analysed, which is what makes performance measurable and problems diagnosable after the fact rather than only live on site.</p>
+      </div>
+    </details>
+  </section>
+
+  <!-- ═══ skills ═══ -->
+  <section class="entry" id="skills">
+    <div class="sec-label"><span class="no">05</span> Skills summary</div>
+    <div class="skills-grid">
+      <div class="skill-block">
+        <h4>Learning &amp; autonomy</h4>
+        <p>Deep imitation learning · CNN-based planning heuristics · Monte Carlo Tree Search · decentralized multi-robot coordination under communication constraints</p>
+      </div>
+      <div class="skill-block">
+        <h4>Motion planning</h4>
+        <p>Sampling-based motion planning (RRT, RRT-Connect, OMPL) · local planner implementation · octree collision checking · viewpoint generation and optimization · sonar sweep control · 3D planner visualization · simulation-to-hardware validation</p>
+      </div>
+      <div class="skill-block">
+        <h4>Systems &amp; deployment</h4>
+        <p>Solution architecture for robot deployments · requirements engineering from customer processes · work cell design · on-site commissioning and technical validation · technical team leadership (4 → 6 engineers) · Fortune 500 customer coordination</p>
+      </div>
+      <div class="skill-block">
+        <h4>Software</h4>
+        <p>Multi-robot fleet management · task allocation and dispatch · operational data collection and analysis · PLC ↔ fleet manager integration</p>
+      </div>
+      <div class="skill-block">
+        <h4>Safety</h4>
+        <p>Functional Safety Engineer (TÜV Rheinland), Machinery · EN ISO 13849-1/-2 · EN 62061 · risk assessment · safety concept ownership for humanoid work cells · integration with customer plant safety systems · committee member, ISO/TC 299/WG 12 (safety of dynamically stable industrial mobile robots)</p>
+      </div>
+      <div class="skill-block">
+        <h4>Languages &amp; tools</h4>
+        <p>C++ · Python · ROS · RViz · Gazebo · OMPL · PyTorch</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ sources ═══ -->
+  <section class="entry">
+    <div class="sec-label"><span class="no">06</span> Sources</div>
+    <ul style="font-size: 14.5px;">
+      <li><strong>Thesis:</strong> <a href="https://ir.library.oregonstate.edu/concern/graduate_thesis_or_dissertations/h128nn52v">ScholarsArchive@OSU</a> · <a href="https://research.engr.oregonstate.edu/rdml/publications">RDML publications index</a></li>
+      <li><strong>RAVEN project</strong> — description, project leads, sponsor and the vehicle photo: <a href="https://blogs.oregonstate.edu/marineautonomy/autonomous-inspection-of-marine-hydrokinetic-energy-converters/">OSU Marine Autonomy Center</a></li>
+      <li><strong>Apollo at Mercedes-Benz photo:</strong> Apptronik / Mercedes-Benz Group AG, via <a href="https://www.therobotreport.com/mercedes-benz-testing-apollo-humanoid/">The Robot Report</a></li>
+      <li><strong>Digit v2 photo:</strong> <a href="https://www.therobotreport.com/digit-humanoid-agility-robotics-now-available/">The Robot Report</a> (credit: Agility Robotics)</li>
+    </ul>
+    <p class="credit-note" style="margin-top: 10px;">All other images are my own.</p>
+  </section>
+</div>
+
+<script>
+  // Play the demo video only while it is on screen (autoplay can be blocked
+  // until the element is visible; pausing off-screen also saves battery).
+  const vid = document.querySelector('video');
+  if (vid) {
+    new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) vid.play().catch(() => {});
+        else vid.pause();
+      });
+    }, { threshold: 0.25 }).observe(vid);
+  }
+</script>
+
+<footer>
+  Kavi Senewiratne · Austin, TX · <a href="https://linkedin.com/in/kavisen">LinkedIn</a> · <a href="https://github.com/kavi-senewiratne">GitHub</a> · <a href="mailto:kavi.senewiratne@gmail.com">kavi.senewiratne@gmail.com</a>
+</footer>
+</body>
+</html>
